@@ -1,0 +1,17 @@
+{% extends 'basesite.html' %}
+
+{% block titulo %}
+    Página Inicial
+{% endblock %}
+
+{% block conteudo %}
+    <div class="row">
+        <div class="col-sm-12 jumbotron text-center"> <h1>Loja Ifro 2023 </h1></div>
+        <div class="col-sm-3 offset-md-3">
+            <a class="btn btn-block btn-primary" href="{% url 'cadproduto' %}">Adicionar Produto</a>
+        </div>
+        <div class="col-sm-3">
+            <a class="btn btn-block btn-success" href="{% url 'listarprod' %}">Listar Produtos</a>
+        </div>
+    </div>
+{% endblock %}
