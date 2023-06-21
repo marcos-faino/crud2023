@@ -1,0 +1,19 @@
+{% extends 'basesite.html' %}
+{% load bootstrap4 %}
+
+{% block titulo %}Excluir cliente {{ cliente.nome }} {% endblock %}
+
+{% block conteudo %}
+    <div class="col-sm-6 offset-sm-3">
+        <h3>Excluindo o Cliente: {{ cliente.nome }}</h3>
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <p class="bg-warning">Confirma a exclusão do cliente: {{ cliente.nome }}?</p>
+            {% buttons %}
+            <button type="submit" class="btn btn-primary">Confirmar</button>
+            <a href="{% url 'listarcli' %}" class="btn btn-warning">Cancelar</a>
+            {% endbuttons %}
+    </form>
+</div>
+{% endblock %}

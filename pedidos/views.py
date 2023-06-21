@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView, ListView
-from django.views.generic.edit import CreateView,UpdateView,DeleteView
+from django.views.generic import TemplateView, ListView, View
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from pedidos import models
 
@@ -44,3 +44,48 @@ class ExcluirProdutoView(DeleteView):
     template_name = 'loja/excluirproduto.html'
     success_url = reverse_lazy('listarprod')
     context_object_name = 'produto'
+
+
+
+class ListarClientesView(ListView):
+    model = models.Cliente
+    template_name = 'loja/listarclientes.html'
+    context_object_name = 'clientes'
+
+
+class CadastrarClienteView(CreateView):
+    model = models.Cliente
+    template_name = 'loja/formclientes.html'
+    fields = ['nome', 'data_nascimento', 'email', 'sexo', 'endereco']
+    success_url = reverse_lazy('listarcli')
+
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
+        contexto['op'] = 'c'
+        return contexto
+
+
+class AtualizarClienteView(UpdateView):
+    model = models.Cliente
+    template_name = 'loja/formclientes.html'
+    fields = ['nome', 'data_nascimento', 'email', 'sexo', 'endereco']
+    success_url = reverse_lazy('listarcli')
+
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
+        contexto['op'] = 'a'
+        return contexto
+
+
+class ExcluirClienteView(DeleteView):
+    model = models.Cliente
+    template_name = 'loja/excluircliente.html'
+    success_url = reverse_lazy('listarcli')
+    context_object_name = 'cliente'
+
+
+class CadastrarEnderecoView(CreateView):
+    model = models.Endereco
+    template_name = 'loja/formenderecos.html'
+    fields = ['rua', 'numero', 'complemento', 'bairro', 'cidade']
+    success_url = reverse_lazy('addcliente')

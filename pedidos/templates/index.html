@@ -5,13 +5,23 @@
 {% endblock %}
 
 {% block conteudo %}
+    <div class="row jumbotron text-center"> <h1>Loja Ifro 2023 </h1></div>
     <div class="row">
-        <div class="col-sm-12 jumbotron text-center"> <h1>Loja Ifro 2023 </h1></div>
-        <div class="col-sm-3 offset-md-3">
-            <a class="btn btn-block btn-primary" href="{% url 'cadproduto' %}">Adicionar Produto</a>
+        <div class="col-sm-4 offset-md-2">
+            <div class="col-">
+                <a class="btn btn-block btn-primary" href="{% url 'cadproduto' %}">Adicionar Produto</a>
+            </div>
+            <div class="col-">
+                <a class="btn btn-block btn-success" href="{% url 'listarprod' %}">Listar Produtos</a>
+            </div>
         </div>
-        <div class="col-sm-3">
-            <a class="btn btn-block btn-success" href="{% url 'listarprod' %}">Listar Produtos</a>
+        <div class="col-sm-4">
+            <div class="col-">
+                <a class="btn btn-block btn-primary" href="{% url 'addcliente' %}">Adicionar Cliente</a>
+            </div>
+            <div class="col-">
+                <a class="btn btn-block btn-success" href="{% url 'listarcli' %}">Listar Clientes</a>
+            </div>
         </div>
     </div>
 {% endblock %}

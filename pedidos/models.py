@@ -5,7 +5,6 @@ class Endereco(models.Model):
     rua = models.CharField(max_length=200)
     numero = models.IntegerField()
     complemento = models.CharField(max_length=50)
-
     bairro = models.CharField(max_length=50)
     cidade = models.CharField(max_length=50)
 

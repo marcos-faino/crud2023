@@ -1,0 +1,27 @@
+{% extends 'basesite.html' %}
+{% load humanize %}
+{% load bootstrap4 %}
+
+
+{% block titulo %}
+    Cadastrando Endereco
+{% endblock %}
+
+{% block conteudo %}
+<div class="col-sm-6 offset-sm-3">
+    <h2>Cadastrando Novo Endereço</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+            {% buttons %}
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a href="{% url 'home' %}" class="btn btn-warning">Cancelar</a>
+            {% endbuttons %}
+    </form>
+</div>
+<script>
+    document.forms[0].onsubmit = function(){
+        sessionStorage.setItem('endereco', id_rua.value + ", " + id_numero.value);
+    }
+</script>
+{% endblock %}
