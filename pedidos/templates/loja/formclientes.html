@@ -21,7 +21,7 @@
     <form method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
-        <div><a href="{% url 'cadendereco' %}" class="btn btn-secondary" id="cadend">Cadastrar Endereço</a></div>
+        <span><a href="{% url 'cadendereco' %}" class="btn btn-secondary btn-small" id="cadend">Cadastrar Endereço</a></span>
             {% buttons %}
             <button type="submit" class="btn btn-primary">Salvar</button>
             <a href="{% url 'home' %}" class="btn btn-warning">Cancelar</a>
@@ -29,6 +29,8 @@
     </form>
 </div>
 <script>
+    id_data_nascimento.type = 'date';
+
     cadend.onmousedown = function(){
         sessionStorage.setItem('nome', id_nome.value);
         sessionStorage.setItem('dtnasc', id_data_nascimento.value);
@@ -43,11 +45,13 @@
         sessionStorage.setItem('endereco', '');
     }
     window.onload = function(){
-        id_nome.value = sessionStorage.getItem('nome') ? sessionStorage.getItem('nome') : "";
-        id_data_nascimento.value = sessionStorage.getItem('dtnasc') ? sessionStorage.getItem('dtnasc') : "";
-        id_email.value = sessionStorage.getItem('email') ? sessionStorage.getItem('email') : "";
-        id_sexo.value = sessionStorage.getItem('sexo') ? sessionStorage.getItem('sexo') : "";
-        id_endereco.value = sessionStorage.getItem('endereco') ? sessionStorage.getItem('endereco') : "";
+        if({{ cliente.nome }} == ""){
+            id_nome.value = sessionStorage.getItem('nome') ? sessionStorage.getItem('nome') : "";
+            id_data_nascimento.value = sessionStorage.getItem('dtnasc') ? sessionStorage.getItem('dtnasc') : "";
+            id_email.value = sessionStorage.getItem('email') ? sessionStorage.getItem('email') : "";
+            id_sexo.value = sessionStorage.getItem('sexo') ? sessionStorage.getItem('sexo') : "";
+            id_endereco.value = sessionStorage.getItem('endereco') ? sessionStorage.getItem('endereco') : "";
+        }
     }
 </script>
 {% endblock %}

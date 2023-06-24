@@ -13,4 +13,8 @@ urlpatterns = [
     path('excluircliente/<int:pk>', views.ExcluirClienteView.as_view(), name='excluircliente'),
     path('cadendereco/<str:nome>/<str:data_nasc>/<str:email>/<str:sexo>', views.CadastrarEnderecoView.as_view(), name='cadendereco'),
     path('cadendereco/', views.CadastrarEnderecoView.as_view(), name='cadendereco'),
+    path('pedidos/', views.ListarPedidosView.as_view(), name='listarpedidos'),
+    path('addpedido/', views.CadastrarPedidoView.as_view(), name='cadpedido'),
+    path('atualizarpedido/<int:pk>', views.AtualizarPedidoView.as_view(), name='updatepedido'),
+    path('excluirpedido/<int:pk>', views.ExcluirPedidoView.as_view(), name='excluirpedido'),
 ]

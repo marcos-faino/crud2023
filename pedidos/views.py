@@ -89,3 +89,40 @@ class CadastrarEnderecoView(CreateView):
     template_name = 'loja/formenderecos.html'
     fields = ['rua', 'numero', 'complemento', 'bairro', 'cidade']
     success_url = reverse_lazy('addcliente')
+
+
+class ListarPedidosView(ListView):
+    model = models.Pedido
+    template_name = 'loja/listarpedidos.html'
+    context_object_name = 'pedidos'
+
+
+class CadastrarPedidoView(CreateView):
+    model = models.Pedido
+    template_name = 'loja/formpedidos.html'
+    fields = ['cliente', 'valor', 'status', 'produtos']
+    success_url = reverse_lazy('listarpedidos')
+
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
+        contexto['op'] = 's'
+        return contexto
+
+
+class AtualizarPedidoView(UpdateView):
+    model = models.Pedido
+    template_name = 'loja/formpedidos.html'
+    fields = ['cliente', 'valor', 'status', 'produtos']
+    success_url = reverse_lazy('listarpedidos')
+
+    def get_context_data(self, **kwargs):
+        contexto = super().get_context_data(**kwargs)
+        contexto['op'] = 'a'
+        return contexto
+
+
+class ExcluirPedidoView(DeleteView):
+    model = models.Pedido
+    template_name = 'loja/excluirpedido.html'
+    success_url = reverse_lazy('listarpedidos')
+    context_object_name = 'pedido'

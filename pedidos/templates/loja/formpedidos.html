@@ -1,0 +1,36 @@
+{% extends 'basesite.html' %}
+{% load humanize %}
+{% load bootstrap4 %}
+
+
+{% block titulo %}
+{% if op == 'c' %}
+    Cadastrando Pedido
+{% elif op == 'a' %}
+    Atualizando o pedido {{ pedido.id }}
+{% endif %}
+{% endblock %}
+
+{% block conteudo %}
+<div class="col-sm-6 offset-sm-3">
+{% if op == 'c' %}
+    <h2>Cadastrando Novo Pedido</h2>
+{% elif op == 'a' %}
+    <h3>Atualizando o Pedido: {{ pedido.id }}</h3>
+{% endif %}
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+            {% buttons %}
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <a href="{% url 'home' %}" class="btn btn-warning">Cancelar</a>
+            {% endbuttons %}
+    </form>
+</div>
+<script>
+    id_valor.readOnly = true;
+    id_produtos.onchange = function(){
+        alert(id_produtos.value);
+    }
+</script>
+{% endblock %}
